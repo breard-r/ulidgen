@@ -9,18 +9,31 @@ struct Args {
 	nb: usize,
 	#[arg(short, long, help = "Display the ulid using the uuid format")]
 	uuid: bool,
+	#[arg(
+		short,
+		long,
+		help = "Use a monotonic increment when generating multiple ulid"
+	)]
+	monotonic: bool,
 }
 
 fn main() {
 	let args = Args::parse();
+	let mut previous_ulid = None;
 	for _ in 0..args.nb {
-		let ulid = generate(&args);
+		let ulid = generate(&args, previous_ulid);
+		previous_ulid = Some(ulid);
 		display(&args, ulid);
 	}
 }
 
 #[inline]
-fn generate(args: &Args) -> Ulid {
+fn generate(args: &Args, previous_ulid: Option<Ulid>) -> Ulid {
+	if args.monotonic {
+		if let Some(prev) = previous_ulid {
+			return Ulid::next_monotonic(prev);
+		}
+	}
 	Ulid::generate()
 }
 
