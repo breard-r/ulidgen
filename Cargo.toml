@@ -11,5 +11,7 @@ keywords = ["ulid", "uuid"]
 
 [dependencies]
 clap = { version = "^4.1", features = ["derive"] }
+rand = "^0.8"
 rusty_ulid = "^2.0"
+time = { version = "^0.3", features = ["macros", "parsing"] }
 uuid = "^1.3"
