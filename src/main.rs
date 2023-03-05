@@ -5,7 +5,7 @@ use uuid::Uuid;
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
-	#[arg(short, long)]
+	#[arg(short, long, help = "Display the ulid using the uuid format")]
 	uuid: bool,
 }
 
