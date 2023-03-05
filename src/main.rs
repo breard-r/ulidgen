@@ -11,13 +11,21 @@ struct Args {
 
 fn main() {
 	let args = Args::parse();
+	let ulid = generate(&args);
+	display(&args, ulid);
+}
 
-	let ulid = Ulid::generate();
+#[inline]
+fn generate(args: &Args) -> Ulid {
+	Ulid::generate()
+}
+
+#[inline]
+fn display(args: &Args, ulid: Ulid) {
 	let ulid_str = if args.uuid {
 		Uuid::from_u128(ulid.into()).to_string()
 	} else {
 		ulid.to_string()
 	};
-
 	println!("{ulid_str}");
 }
