@@ -1,0 +1,13 @@
+[package]
+name = "ulidgen"
+version = "0.1.0"
+authors = ["Rodolphe Breard <rodolphe@what.tf>"]
+edition = "2021"
+repository = "https://github.com/breard-r/ulidgen"
+license = "MIT OR Apache-2.0"
+keywords = ["ulid", "uuid"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rusty_ulid = "^2.0"
